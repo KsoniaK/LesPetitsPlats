@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" href="assets/img/logo.png">
+    <link rel="stylesheet" href="assets/style/sass/style.css">
+    <title>Projet Les Petits Plats</title>
+    <script src="assets/js/index.js"></script>
+</head>
+<body>
+    <!-- header -->
+    <header>
+        <!-- titre -->
+        <h1>
+            <!-- logo -->
+            <img src="assets/img/logo.png" alt="logo">
+        </h1>
+        <!-- fonction rechercher -->
+        <section class="recherche">
+            <!-- champs de saisie -->
+            <input class="recherche_input" type="text">
+            <!-- emoticone loupe -->
+            <img class="recherche_loupe" src="assets/img/search.png" alt="rechercher">
+        </section>
+    </header>
+    <!-- main -->
+    <main>
+        <!-- tags -->
+        <section class="section_tags">
+                <div class="section_tags-tag">
+                    <p>nom tag</p>
+                    <img class="section_tags-delete" src="assets/img/delete.png" alt="supprimer tag">
+                </div>
+        </section>
+        <!-- section filtres -->
+       <section id="filtres" class="filtres"></section>
+       <!-- recette 1 -->
+       <section id="recettes" class="recettes"></section>
+    </main>
+    <!-- scripts -->
+    <script src="assets/js/service/service.js"></script>
+    <script src="assets/js/index.js"></script>
+    <script src="assets/js/createRecipes.js"></script>
+    <script src="assets/js/filtres.js"></script>
+</body>
+</html>
