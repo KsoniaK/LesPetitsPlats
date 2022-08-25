@@ -11,6 +11,22 @@ main{
       padding: 2rem;
     }
 }
+.selection_appareils{
+  display: flex;
+  background-color: #68D9A4;
+  position: absolute;
+    &-nom{
+      padding: 2rem;
+    }
+}
+.selection_ustensils{
+  display: flex;
+  background-color: #ED6454;
+  position: absolute;
+    &-nom{
+      padding: 2rem;
+    }
+}
 .recettes{
   border: 2px solid steelblue;
   display: flex;

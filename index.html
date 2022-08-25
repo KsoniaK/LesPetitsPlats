@@ -35,7 +35,35 @@
                 </div>
         </section>
         <!-- section filtres -->
-       <section id="filtres" class="filtres"></section>
+       <section id="filtres" class="filtres">
+              <!-- ingrédients -->
+            <section class="container_ingredients">
+                <!-- <input id="filtres_ingredients" type="text" class="filtres_input" placeholder="Ingredients" onclick="appearListIngredients(this)"> -->
+                <input id="filtres_ingredients" type="text" class="filtres_input" placeholder="Ingredients" data-filtre="ingredients">
+                <img class="filtres-img" src="assets/img/down-arrow.png" alt="dérouler la liste des ingrédients" data-filtre="ingredients"/>
+                <article id="selection_ingredients" class="selection_ingredients">
+                    <datalist id="datalist-ingredients" class="datalist_ingredients datalist_filtres" data-filtre="ingredients"></datalist>
+                </article>
+            </section>
+                <!-- appareil -->
+            <section class="container_appareils">
+                <!-- <input id="filtres_appareils" type="text" class="filtres_input" placeholder="Appareils" onclick="appearListIngredients()"> -->
+                <input id="filtres_appareils" type="text" class="filtres_input" placeholder="Appareils" data-filtre="appareils">
+                <img class="filtres-img" src="assets/img/down-arrow.png" alt="dérouler la liste des appareils" data-filtre="appareils"/>
+                <article id="selection_appareils" class="selection_appareils">
+                    <datalist id="datalist-appareils" class="datalist_appareils datalist_filtres" data-filtre="appareils"></datalist>
+                </article>
+            </section>
+              <!-- ustensils -->
+            <section class="container_ustensils">
+                <!-- <input id="filtres_ustensils" type="text" class="filtres_input" placeholder="Ustensils" onclick="appearListIngredients()"> -->
+                <input id="filtres_ustensils" type="text" class="filtres_input" placeholder="Ustensils" data-filtre="ustensils">
+                <img class="filtres-img" src="assets/img/down-arrow.png" alt="dérouler la liste des ustensils" data-filtre="ustensils"/>
+                <article id="selection_ustensils" class="selection_ustensils">
+                    <datalist id="datalist-ustensils" class="datalist_ustensils datalist_filtres" data-filtre="ustensils"></datalist>
+                </article>
+            </section>
+       </section>
        <!-- recette 1 -->
        <section id="recettes" class="recettes"></section>
     </main>
