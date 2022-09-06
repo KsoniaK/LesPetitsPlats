@@ -98,22 +98,22 @@ main {
   display: flex;
   background-color: #3282F7;
   position: absolute; }
-  .selection_ingredients-nom {
-    padding: 2rem; }
+  .selection_ingredients .datalist_ingredients {
+    padding: 1rem; }
 
 .selection_appareils {
   display: flex;
   background-color: #68D9A4;
   position: absolute; }
-  .selection_appareils-nom {
-    padding: 2rem; }
+  .selection_appareils .datalist_appareils {
+    padding: 1rem; }
 
 .selection_ustensils {
   display: flex;
   background-color: #ED6454;
   position: absolute; }
-  .selection_ustensils-nom {
-    padding: 2rem; }
+  .selection_ustensils .datalist_ustensils {
+    padding: 1rem; }
 
 .recettes {
   border: 2px solid steelblue;

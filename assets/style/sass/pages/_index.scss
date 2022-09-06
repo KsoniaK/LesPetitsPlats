@@ -7,24 +7,24 @@ main{
   display: flex;
   background-color: #3282F7;
   position: absolute;
-    &-nom{
-      padding: 2rem;
+    .datalist_ingredients{
+      padding: 1rem;
     }
 }
 .selection_appareils{
   display: flex;
   background-color: #68D9A4;
   position: absolute;
-    &-nom{
-      padding: 2rem;
+  .datalist_appareils{
+      padding: 1rem;
     }
 }
 .selection_ustensils{
   display: flex;
   background-color: #ED6454;
   position: absolute;
-    &-nom{
-      padding: 2rem;
+  .datalist_ustensils{
+      padding: 1rem;
     }
 }
 .recettes{
