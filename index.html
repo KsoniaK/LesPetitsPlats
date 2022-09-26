@@ -20,7 +20,7 @@
         <!-- fonction rechercher -->
         <section class="recherche">
             <!-- champs de saisie -->
-            <input class="recherche_input" type="text">
+            <input id="recherche_principale-input" class="recherche_input" type="text">
             <!-- emoticone loupe -->
             <img class="recherche_loupe" src="assets/img/search.png" alt="rechercher">
         </section>
@@ -28,12 +28,7 @@
     <!-- main -->
     <main>
         <!-- tags -->
-        <section class="section_tags">
-                <div class="section_tags-tag">
-                    <p>nom tag</p>
-                    <img class="section_tags-delete" src="assets/img/delete.png" alt="supprimer tag">
-                </div>
-        </section>
+        <section id="section_tags" class="section_tags"></section>
         <!-- section filtres -->
        <section id="filtres" class="filtres">
               <!-- ingrédients -->
@@ -69,7 +64,7 @@
     </main>
     <!-- scripts -->
     <script src="assets/js/service/service.js"></script>
-    <script src="assets/js/index.js"></script>
+    <!-- <script src="assets/js/index.js"></script> -->
     <script src="assets/js/createRecipes.js"></script>
     <script src="assets/js/filtres.js"></script>
 </body>

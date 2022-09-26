@@ -1,6 +1,2 @@
 // createRecipes();
 // filtres();
-
-function seeMoreRecipe(){
-  
-};

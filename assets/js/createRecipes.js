@@ -1,10 +1,10 @@
 // Création des cartes recettes
+const sectionRecettes = document.getElementById("recettes");
 function createRecipes() {
   // console.log(recipes[0].ingredients[0].unit);
   // console.log(recipes);
   // Récupération de la section recettes
-  const sectionRecettes = document.getElementById("recettes");
-
+  
   // On boucle sur le tableau recipes pour avoir chaque recette
   function allRecipes(){
   recipes.map(recipe => {
