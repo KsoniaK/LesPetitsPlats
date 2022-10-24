@@ -5,14 +5,10 @@ const datalistUstensils = document.getElementById("datalist-ustensils");
 const allRecipesSection = document.getElementById("recettes");
 document.getElementById('recherche_principale-input').addEventListener('input', () => search());
 
-// ----------------------------------------------------
-// Création du ontenu des filtres ingrédient, appareil et ustensil
-// ----------------------------------------------------
-
-
-// ---------------------------------------------------------
+// -----------------------------------------------------
+// Listes (ingrédients, appareils, ustensils) des inputs
+// -----------------------------------------------------
 // Pour chaque input cliqué afficher la liste correspondante
-// ---------------------------------------------------------
 Array.from(document.querySelectorAll(".filtres_input")).map(input => {
   input.addEventListener('click', (e) => appearLists(e.target))
 });
@@ -32,78 +28,79 @@ function appearLists(el){
           };
 };
 
-// ---------------
+// ----
+// Tags
+// ----
 // Création du tag
-// ---------------
-// const optionsIngredients = Array.from(document.querySelectorAll('.option-ingredients'));
-// optionsIngredients.map(optionIngredient => optionIngredient.addEventListener('click', createTag));
 let divsTag = [];
+// console.log(divsTag);
 
 function createTag(e){
   const sectionTag = document.getElementById('section_tags');
   const searchedTag = e.target.value;
+  console.log(searchedTag);
   const tagType = e.target.closest('section').getAttribute('data-type');
+  const tagTypeT = e.target.closest('section');
+  console.log(tagTypeT);
   
     sectionTag.innerHTML += `
       <div class="section_tags-tag" data-type="${tagType}" data-value="${searchedTag.toLowerCase()}">
         <p>${searchedTag}</p>
         <img class="section_tags-delete" src="assets/img/delete.png" alt="supprimer tag">
       </div>`
-  
-    divsTag.push({type: tagType, value: searchedTag.toLowerCase()});
-    search();
-};
 
-// ------------------
+      divsTag.push({type: tagType, value: searchedTag.toLowerCase()});
+      search();
+
+    // console.log(divsTag);
+  };
+
+
+
 // Suppression du tag
-// ------------------
 function deleteTags(e){
-  // console.log(e.target);
   const cross = e.target;
   const tagType = cross.closest('div').getAttribute('data-type');
   const tagValue = cross.closest('div').getAttribute('data-value');
-  // merci de supprimer la value du divsTag
+  // Suppression de la valeur du divsTag
   divsTag = divsTag.filter(tag => tag.value != tagValue && tag.type != tagType)
   cross.closest('div').remove();
   search();
 };
 
-
-
-
-
-
-
-// ------------------------------------------------------------------------------
-// Fonction pour les 4 recherches (principale, ingrédients, appareils, ustensils)
-// ------------------------------------------------------------------------------
+// -------
+// Filtres
+// -------
+// Fonction qui va lancer le filtre principal et les tags
 function search(){
-
   let results = principalFilter();
-  console.log('res', results)
   if (divsTag.length > 0)
     results = filteredRecipesByTag(results);
 
-  displayRecipes(results)
-}
+    displayRecipes(results);
+};
+
+// Filtre principal
 function principalFilter(){
   // Récupérer la saisie de l'utilisateur
   const wordSearched = document.getElementById('recherche_principale-input').value.toLowerCase();
   let filteredRecipes = recipes;
+
     if(wordSearched.length > 2){
-      // allRecipesSection.innerHTML = "<h1>Merci d'entrer au moins 3 caractères pour lancer une recherche</h1>";
       filteredRecipes = recipes.filter(recette => {
         let titleDescritionIngredients = recette.name + recette.description + recette.ingredients.toString();
         if(titleDescritionIngredients.toLowerCase().includes(wordSearched)){
           return recette
         };
-      })
-  }
+      });
+  };
   return filteredRecipes;
-}
+};
 
+// Filtres tags
 function filteredRecipesByTag(datas) {
   let res = [];
+
   divsTag.forEach((tag) => {
     console.log(tag);
     switch (tag.type) {
@@ -111,18 +108,38 @@ function filteredRecipesByTag(datas) {
         res = datas.filter((recipe) =>
         recipe.ingredients.some((ing) =>
             ing.ingredient.toLowerCase().includes(tag.value)
-        )
+          )
         );
-        console.log(res);
 
         res = [... new Set(res)]
         break;
+
+        case "appliance":
+          res = datas.filter((recipe) =>
+          recipe.appliance.toLowerCase().includes(tag.value)
+          );
+  
+          res = [... new Set(res)]
+          break;
+
+          case "ustensils":
+            res = datas.filter((recipe) =>
+            recipe.ustensils.some((ust) =>
+                ust.toLowerCase().includes(tag.value)
+              )
+            );
+    
+            res = [... new Set(res)]
+            break;
     }
   });
 
   return res;
-}
+};
 
+// -----------------------
+// Affichage des résultats
+// -----------------------
 function displayRecipes(datas) {
   sectionRecettes.innerHTML = '';
   datalistIngredients.innerHTML = '';
@@ -169,26 +186,21 @@ function displayRecipes(datas) {
       `
     });
     
-
-    // Ingrédients: Map et suppression des doublons avec flat/ Combinaison avec flatMap
+    // Ingrédients: Map et suppression des doublons avec flat / Combinaison avec flatMap
     const arrayIngredientsDoublons = datas.flatMap(recipe => recipe.ingredients.map(ing => ing.ingredient));
     const arrayIngredientsSansDoublons = Array.from(new Set(arrayIngredientsDoublons));
-    // Appareils: Map et suppression des doublons avec flat/ Combinaison avec flatMap
+    // Appareils: Map et suppression des doublons avec flat / Combinaison avec flatMap
     const arrayAppareilsDoublons = datas.flatMap(recipe => recipe.appliance);
     const arrayAppareilsSansDoublons = Array.from(new Set(arrayAppareilsDoublons));
-    //Ustensils: Map et suppression des doublons avec flat/ Combinaison avec flatMap
+    // Ustensils: Map et suppression des doublons avec flat / Combinaison avec flatMap
     const arrayUstensilsDoublons = datas.flatMap(recipe => recipe.ustensils);
     const arrayUstensilsSansDoublons = Array.from(new Set(arrayUstensilsDoublons));
-
-    // const datalistIngredients = document.getElementById("datalist-ingredients");
-    // const datalistAppareils = document.getElementById("datalist-appareils");
-    // const datalistUstensils = document.getElementById("datalist-ustensils");
 
     datalistIngredients.innerHTML += 
       `
         ${arrayIngredientsSansDoublons.map(ingredient =>
           `
-            <option class="option-ingredients">${ingredient}</option>
+            <option class="option-item">${ingredient}</option>
           `
           ).join('')}
       `
@@ -196,7 +208,7 @@ function displayRecipes(datas) {
       `
         ${arrayAppareilsSansDoublons.map(appliance =>
           `
-            <option>${appliance}</option>
+            <option class="option-item">${appliance}</option>
           `
           ).join('')}
       `
@@ -204,154 +216,87 @@ function displayRecipes(datas) {
       `
         ${arrayUstensilsSansDoublons.map(ustensil =>
           `
-            <option>${ustensil}</option>
+            <option class="option-item">${ustensil}</option>
           `
           ).join('')}
       `
+    
+      // input tag ingrédients
+      let inputIngredientContent = document.getElementById("filtres_ingredients");
+      inputIngredientContent.addEventListener('input', searchedIng);
+      
+      function searchedIng(){
+        let searchedIngInput = inputIngredientContent.value
 
-    const optionsIngredients = Array.from(document.querySelectorAll('.option-ingredients'));
-    optionsIngredients.map(optionIngredient => optionIngredient.addEventListener('click', createTag));
+        datalistIngredients.innerHTML = "";
+        
+        const filteredArrayIngredients = arrayIngredientsSansDoublons.filter(ing => {
+          if(ing.toLowerCase().includes(searchedIngInput)){
+           datalistIngredients.innerHTML += `<option class="option-item">${ing}</option>`;
+           return ing
+          };
+        });
+        if(filteredArrayIngredients.length <= 0){
+          datalistIngredients.textContent = "Aucun ingrédient ne correspond à votre recherche";
+        }else{
+          const optionsTags = Array.from(document.querySelectorAll('.option-item'));
+          optionsTags.map(optionsTag => optionsTag.addEventListener('click', createTag));
+        }
+      }
+
+      // input tag appareils
+      let inputAppareilContent = document.getElementById("filtres_appareils");
+      inputAppareilContent.addEventListener('input', searchedApp);
+      
+      function searchedApp(){
+        let searchedAppInput = inputAppareilContent.value
+
+        datalistAppareils.innerHTML = "";
+        
+        const filteredArrayAppareils = arrayAppareilsSansDoublons.filter(app => {
+          if(app.toLowerCase().includes(searchedAppInput)){
+            datalistAppareils.innerHTML += `<option class="option-item">${app}</option>`;
+           return app
+          };
+        });
+        if(filteredArrayAppareils.length <= 0){
+          datalistAppareils.textContent = "Aucun appareil ne correspond à votre recherche";
+        }else{
+          const optionsTags = Array.from(document.querySelectorAll('.option-item'));
+          optionsTags.map(optionsTag => optionsTag.addEventListener('click', createTag));
+        };
+      }
+
+            // input tag ustensils
+            let inputUstensilContent = document.getElementById("filtres_ustensils");
+            inputUstensilContent.addEventListener('input', searchedUst);
+            
+            function searchedUst(){
+              let searchedUstInput = inputUstensilContent.value
+      
+              datalistUstensils.innerHTML = "";
+              
+              const filteredArrayUstensils = arrayUstensilsSansDoublons.filter(ust => {
+                if(ust.toLowerCase().includes(searchedUstInput)){
+                  datalistUstensils.innerHTML += `<option class="option-item">${ust}</option>`;
+                 return ust
+                };
+              });
+              if(filteredArrayUstensils.length <= 0){
+                datalistUstensils.textContent = "Aucun ustensil ne correspond à votre recherche";
+              }else{
+                const optionsTags = Array.from(document.querySelectorAll('.option-item'));
+                optionsTags.map(optionsTag => optionsTag.addEventListener('click', createTag));
+              };
+            }
+
+    // Evènement au click = création / suppression tags
+    const optionsTags = Array.from(document.querySelectorAll('.option-item'));
+    optionsTags.map(optionsTag => optionsTag.addEventListener('click', createTag));
     const sectionsDelete = Array.from(document.querySelectorAll('.section_tags-delete'));
-    sectionsDelete.map(optionIngredient => optionIngredient.addEventListener('click', deleteTags));
-
-}else{
-  sectionRecettes.innerHTML = 'pas de résultats trouvés';
+    sectionsDelete.map(optionsTag => optionsTag.addEventListener('click', deleteTags));
+    }else{
+    sectionRecettes.innerHTML = `Aucun résultat trouvé... vous pouvez chercher: `;
+  };
 };
-    
-
-}
-
 displayRecipes(recipes);
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-// const inputIngredient = document.getElementById('filtres_ingredients');
-// inputIngredient.addEventListener('input', searchTag('ingredientsFiltre'))
-// const inputAppareil = document.getElementById('filtres_appareils');
-// inputAppareil.addEventListener('input', searchTag('appareilsFiltre'))
-// const inputUstensils = document.getElementById('filtres_ustensils');
-// inputUstensils.addEventListener('input', searchTag('ustensilsFiltre'))
-
-// function searchTag(element) {
-//   switch (element) {
-//     case 'ingredientsFiltre':
-//       // console.log(element);
-//       const datalistIngredients = document.getElementById("datalist-ingredients");
-    
-//       // datalistIngredients.innerHTML = "";
-    
-//       const searchedIngredients = element.target.value.toLowerCase();
-    
-//       const filteredArrayIngredients = arrayIngredientsSansDoublons.filter(ing => {
-//         if(ing.toLowerCase().includes(searchedIngredients)){
-//          datalistIngredients.innerHTML += `<option>${ing}</option>`;
-//          return ing
-//         };
-//       });
-    
-//       if(filteredArrayIngredients.length <= 0) datalistIngredients.textContent = "Aucune recette ne correspond à votre critère... vous pouvez chercher:";
-//       break;
-//     // default:
-
-//       case 'appareilsFiltre':
-//       // console.log(element);
-//           const datalistAppareils = document.getElementById("datalist-appareils");
-        
-//           // datalistAppareils.innerHTML = "";
-        
-//           const searchedAppareils = element.target.value.toLowerCase();
-        
-//           const filteredArrayAppareils = arrayAppareilsSansDoublons.filter(app => {
-//             if(app.toLowerCase().includes(searchedAppareils)){
-//               datalistAppareils.innerHTML += `<option>${app}</option>`;
-//              return app
-//             };
-//           });
-        
-//           if(filteredArrayAppareils.length <= 0) datalistAppareils.textContent = "Aucune recette ne correspond à votre critère... vous pouvez chercher:";
-
-//       case 'ustensilsFiltre':
-//       // console.log(element);
-//         const datalistUstensils = document.getElementById("datalist-ustensils");
-      
-//         // datalistUstensils.innerHTML = "";
-      
-//         const searchedUstensils = element.target.value.toLowerCase();
-      
-//         const filteredArrayUstensils = arrayUstensilsSansDoublons.filter(ust => {
-//           if(ust.toLowerCase().includes(searchedUstensils)){
-//             datalistUstensils.innerHTML += `<option>${ust}</option>`;
-//            return ust
-//           };
-//         });
-      
-//         if(filteredArrayUstensils.length <= 0) datalistUstensils.textContent = "Aucune recette ne correspond à votre critère... vous pouvez chercher:";
-//       break;
-//   }
-// }
