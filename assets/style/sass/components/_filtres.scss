@@ -3,14 +3,38 @@
   display: flex;
   padding: 1rem;
     .container_ingredients, .container_appareils, .container_ustensils{
-      width: 13%;
-      position: relative;
       margin-right: 1rem;
+        #datalist-ingredients{
+          background-color: #3282F7;
+        }
+        #datalist-appareils{
+          background-color: #68D9A4;
+        }
+        #datalist-ustensils{
+          background-color: #ED6454;
+        }
         .datalist_ingredients, .datalist_appareils, .datalist_ustensils{
           display: none;
+          position: absolute;
+          row-gap: 7px;
+          border-radius: 0 0 5px 5px;
+          padding: 10px 20px;
+          justify-content: space-between;
+          flex-wrap: wrap;
+          // box-shadow: 0px 12px 12px 0px rgba(0, 0, 0, 0.2);
+          z-index: 2;
+          color: white;
+          width: 50%;
+          max-height: 287px;
+          overflow-y: scroll;
             & option{
               color: white;
+              width: 30%;
+              // flex: 184px;
             }
+        }
+        .active{
+          display: flex;
         }
     }
     & input{
@@ -24,10 +48,19 @@
     & img{
       width: 5%;
       position: absolute;
-      left: 85%;
-      width: 10%;
-      top: 35%;
+      // left: 16%;
+      width: 1.5%;
+      top: 36%;
       filter: invert(100%) sepia(3%) saturate(1%) hue-rotate(20deg) brightness(105%) contrast(100%);
+    }
+    &-img-ing{
+      left: 16%;
+    }
+    &-img-app{
+      left: 33%;
+    }
+    &-img-ust{
+      left: 49%;
     }
     #filtres_ingredients{
       border: 2px solid slateblue;

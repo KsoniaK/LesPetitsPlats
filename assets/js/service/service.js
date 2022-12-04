@@ -15,8 +15,8 @@ const recipes = [
 					},
 					{
 							"ingredient" : "Crème de coco",
-							"quantity" : 2,
-							"unit" : "cuillères à soupe"
+							"quantity" : 4,
+							"unit" : " cuillères"
 					},
 					{
 							"ingredient" : "Sucre",
@@ -40,7 +40,7 @@ const recipes = [
 					{
 							"ingredient" : "Thon Rouge (ou blanc)",
 							"quantity" : 200,
-							"unit" : "grammes"
+							"unit" : "g"
 					},
 					{
 							"ingredient" : "Concombre",
@@ -98,7 +98,7 @@ const recipes = [
 					{
 							"ingredient": "Huile d'olive",
 							"quantity": 1,
-						 "unit": "cuillères à soupe"
+						 "unit": "cuillère à soupe"
 					}
 			],
 			"time": 80,

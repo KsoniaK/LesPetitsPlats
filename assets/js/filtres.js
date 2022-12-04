@@ -1,3 +1,6 @@
+// Ingrédients: Map et suppression des doublons avec flat / Combinaison avec flatMap
+const arrayIngredientsDoublons = recipes.flatMap(recipe => recipe.ingredients.map(ing => ing.ingredient));
+const arrayIngredientsSansDoublons = Array.from(new Set(arrayIngredientsDoublons));
 const datalistIngredients = document.getElementById("datalist-ingredients");
 const datalistAppareils = document.getElementById("datalist-appareils");
 const datalistUstensils = document.getElementById("datalist-ustensils");
@@ -14,18 +17,32 @@ Array.from(document.querySelectorAll(".filtres_input")).map(input => {
 });
 // Fonction selection filtres: ingrédients, appareils et ustensils
 function appearLists(el){
+  // const motsClef = el.dataset.filtre;
   const data = document.querySelector(`datalist[data-filtre=${el.dataset.filtre}]`);
   const imgDropDown = document.querySelector(`img[data-filtre=${el.dataset.filtre}]`);
 
           if(data.classList.contains('active')){
             data.classList.remove('active');
-            data.style.display = 'none';
             imgDropDown.style.transform = 'rotate(0deg)';
+            // console.log("fermé");
           }else{
             data.classList.add('active');
-            data.style.display = 'block';
             imgDropDown.style.transform = 'rotate(180deg)';
           };
+
+
+  // // Ne faire appraître qu'une seule liste à la fois
+  // const activeDatalist = document.querySelector(`datalist[data-filtre=${el.dataset.filtre}]`);
+  // const datalistsTab = Array.from(document.querySelectorAll("datalist"));
+
+  // datalistsTab.filter(datalist =>{  
+  //   if(activeDatalist.dataset.filtre !== datalist.dataset.filtre){
+  //     datalist.style.display = "none";
+  //   }else{
+  //     datalist.style.display = "flex"
+  //   }
+  // });
+
 };
 
 // ----
@@ -33,29 +50,39 @@ function appearLists(el){
 // ----
 // Création du tag
 let divsTag = [];
-// console.log(divsTag);
 
 function createTag(e){
   const sectionTag = document.getElementById('section_tags');
   const searchedTag = e.target.value;
-  console.log(searchedTag);
   const tagType = e.target.closest('section').getAttribute('data-type');
-  const tagTypeT = e.target.closest('section');
-  console.log(tagTypeT);
   
     sectionTag.innerHTML += `
       <div class="section_tags-tag" data-type="${tagType}" data-value="${searchedTag.toLowerCase()}">
-        <p>${searchedTag}</p>
+        <p class="p-tag">${searchedTag}</p>
         <img class="section_tags-delete" src="assets/img/delete.png" alt="supprimer tag">
       </div>`
 
       divsTag.push({type: tagType, value: searchedTag.toLowerCase()});
       search();
+      
+      // Suppression du tag cliqué dans la datalist
+      const optionsItems = Array.from(document.querySelectorAll('.ing'));
+      const val = searchedTag;
 
-    // console.log(divsTag);
-  };
+        const resultat = optionsItems.filter(optionItem => {
+          if(optionItem.textContent !== val ){
+            return optionItem.textContent;
+          }
+        }).map(x => x.textContent)
 
-
+        datalistIngredients.innerHTML = ""
+        // essai 1
+        datalistIngredients.innerHTML += 
+        `
+        ${resultat.map(res => 
+          `<option class="option-item ing">${res}</option>`).join('')}
+        `
+      };
 
 // Suppression du tag
 function deleteTags(e){
@@ -73,36 +100,70 @@ function deleteTags(e){
 // -------
 // Fonction qui va lancer le filtre principal et les tags
 function search(){
-  let results = principalFilter();
+  let results = principalFilterBis();
   if (divsTag.length > 0)
     results = filteredRecipesByTag(results);
-
     displayRecipes(results);
 };
 
-// Filtre principal
-function principalFilter(){
-  // Récupérer la saisie de l'utilisateur
-  const wordSearched = document.getElementById('recherche_principale-input').value.toLowerCase();
-  let filteredRecipes = recipes;
+// // Filtre principal
+// function principalFilter(){
+//   // Récupérer la saisie de l'utilisateur
+//   const wordSearched = document.getElementById('recherche_principale-input').value.toLowerCase();
+//   let filteredRecipes = recipes;
 
-    if(wordSearched.length > 2){
-      filteredRecipes = recipes.filter(recette => {
-        let titleDescritionIngredients = recette.name + recette.description + recette.ingredients.toString();
-        if(titleDescritionIngredients.toLowerCase().includes(wordSearched)){
-          return recette
+//     if(wordSearched.length > 2){
+//       filteredRecipes = recipes.filter(recette => {
+//         let titleDescritionIngredients = recette.name + recette.description + recette.ingredients.toString();
+//         if(titleDescritionIngredients.toLowerCase().includes(wordSearched)){
+//           return recette
+//         };
+//       });
+//   };
+//   return filteredRecipes;
+// };
+
+// ------------------------------ TEST ---------------------------------------------
+
+// Filtre principal
+function principalFilterBis(){
+  // Récupérer la saisie de l'utilisateur
+  let array = [];
+  const wordSearched = document.getElementById('recherche_principale-input').value.toLowerCase();
+  let names, descriptions, ingredients, element3Bis;
+
+  for (let i = 0; i < recipes.length; i++) {
+    names = recipes[i].name;
+    descriptions = recipes[i].description;
+    // if (wordSearched.length > 2) {
+        if(names.toLowerCase().includes(wordSearched) || descriptions.toLowerCase().includes(wordSearched)){
+          array.push(recipes[i]);
         };
-      });
-  };
-  return filteredRecipes;
+      }
+      
+      for (let i = 0; i < recipes.length; i++) {
+        ingredients = recipes[i].ingredients
+        for (let i = 0; i < ingredients.length; i++) {
+          element3Bis = ingredients[i].ingredient;
+
+          // if (element3Bis.toLowerCase().includes(wordSearched)) {
+          //   array.push(recipes[i]);
+          // }
+        }
+      // }
+    }
+  // console.log(array);
+  return array;
 };
+// principalFilterBis();
+
+// ------------------------------ TEST ---------------------------------------------
 
 // Filtres tags
 function filteredRecipesByTag(datas) {
   let res = [];
 
   divsTag.forEach((tag) => {
-    console.log(tag);
     switch (tag.type) {
       case "ingredients":
         res = datas.filter((recipe) =>
@@ -133,7 +194,6 @@ function filteredRecipesByTag(datas) {
             break;
     }
   });
-
   return res;
 };
 
@@ -200,7 +260,7 @@ function displayRecipes(datas) {
       `
         ${arrayIngredientsSansDoublons.map(ingredient =>
           `
-            <option class="option-item">${ingredient}</option>
+            <option class="option-item ing">${ingredient}</option>
           `
           ).join('')}
       `
@@ -208,7 +268,7 @@ function displayRecipes(datas) {
       `
         ${arrayAppareilsSansDoublons.map(appliance =>
           `
-            <option class="option-item">${appliance}</option>
+            <option class="option-item app">${appliance}</option>
           `
           ).join('')}
       `
@@ -216,7 +276,7 @@ function displayRecipes(datas) {
       `
         ${arrayUstensilsSansDoublons.map(ustensil =>
           `
-            <option class="option-item">${ustensil}</option>
+            <option class="option-item ust">${ustensil}</option>
           `
           ).join('')}
       `
@@ -296,7 +356,15 @@ function displayRecipes(datas) {
     const sectionsDelete = Array.from(document.querySelectorAll('.section_tags-delete'));
     sectionsDelete.map(optionsTag => optionsTag.addEventListener('click', deleteTags));
     }else{
+    // Datalists
+    const dataIng = document.getElementById('datalist-ingredients');
+    const dataApp = document.getElementById('datalist-appareils');
+    const dataUst = document.getElementById('datalist-ustensils');
+
     sectionRecettes.innerHTML = `Aucun résultat trouvé... vous pouvez chercher: `;
+    dataIng.style.backgroundColor = 'transparent'
+    dataApp.style.backgroundColor = 'transparent'
+    dataUst.style.backgroundColor = 'transparent'
   };
 };
 displayRecipes(recipes);

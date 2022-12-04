@@ -27,19 +27,19 @@
 // // bonjour();
 
 
-const poissons =['sardine', 'dorade', 'thon'];
+// const poissons =['sardine', 'dorade', 'thon', 'sol'];
 
-console.clear()
-console.log(poissons);
+// // console.clear()
+// console.log(poissons);
 
-const valeur = 'thon';
-const result = poissons.filter(poisson => {
-  if(poisson !== valeur){
-    return poisson
-  }
-})
-const result1 = poissons.filter(poisson => poisson !== valeur)
+// const valeur = 'thon';
+// const result = poissons.filter(poisson => {
+//   if(poisson !== valeur){
+//     return poisson
+//   }
+// })
+// // const result1 = poissons.filter(poisson => poisson !== valeur)
 
 
+// // console.log(result);
 // console.log(result);
-console.log(result1);

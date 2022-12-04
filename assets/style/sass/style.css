@@ -6,20 +6,38 @@ body {
   margin: 0;
   font-family: "DM Sans", sans-serif;
   z-index: 1;
-  font-size: 15px; }
+  font-size: 13px; }
 
 .filtres {
   border: 2px solid fuchsia;
   display: flex;
   padding: 1rem; }
   .filtres .container_ingredients, .filtres .container_appareils, .filtres .container_ustensils {
-    width: 13%;
-    position: relative;
     margin-right: 1rem; }
+    .filtres .container_ingredients #datalist-ingredients, .filtres .container_appareils #datalist-ingredients, .filtres .container_ustensils #datalist-ingredients {
+      background-color: #3282F7; }
+    .filtres .container_ingredients #datalist-appareils, .filtres .container_appareils #datalist-appareils, .filtres .container_ustensils #datalist-appareils {
+      background-color: #68D9A4; }
+    .filtres .container_ingredients #datalist-ustensils, .filtres .container_appareils #datalist-ustensils, .filtres .container_ustensils #datalist-ustensils {
+      background-color: #ED6454; }
     .filtres .container_ingredients .datalist_ingredients, .filtres .container_ingredients .datalist_appareils, .filtres .container_ingredients .datalist_ustensils, .filtres .container_appareils .datalist_ingredients, .filtres .container_appareils .datalist_appareils, .filtres .container_appareils .datalist_ustensils, .filtres .container_ustensils .datalist_ingredients, .filtres .container_ustensils .datalist_appareils, .filtres .container_ustensils .datalist_ustensils {
-      display: none; }
+      display: none;
+      position: absolute;
+      row-gap: 7px;
+      border-radius: 0 0 5px 5px;
+      padding: 10px 20px;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      z-index: 2;
+      color: white;
+      width: 50%;
+      max-height: 287px;
+      overflow-y: scroll; }
       .filtres .container_ingredients .datalist_ingredients option, .filtres .container_ingredients .datalist_appareils option, .filtres .container_ingredients .datalist_ustensils option, .filtres .container_appareils .datalist_ingredients option, .filtres .container_appareils .datalist_appareils option, .filtres .container_appareils .datalist_ustensils option, .filtres .container_ustensils .datalist_ingredients option, .filtres .container_ustensils .datalist_appareils option, .filtres .container_ustensils .datalist_ustensils option {
-        color: white; }
+        color: white;
+        width: 30%; }
+    .filtres .container_ingredients .active, .filtres .container_appareils .active, .filtres .container_ustensils .active {
+      display: flex; }
   .filtres input {
     width: 100%;
     text-align: center;
@@ -30,10 +48,15 @@ body {
   .filtres img {
     width: 5%;
     position: absolute;
-    left: 85%;
-    width: 10%;
-    top: 35%;
+    width: 1.5%;
+    top: 36%;
     filter: invert(100%) sepia(3%) saturate(1%) hue-rotate(20deg) brightness(105%) contrast(100%); }
+  .filtres-img-ing {
+    left: 16%; }
+  .filtres-img-app {
+    left: 33%; }
+  .filtres-img-ust {
+    left: 49%; }
   .filtres #filtres_ingredients {
     border: 2px solid slateblue;
     background-color: #3282F7; }
@@ -51,7 +74,6 @@ body {
   .section_tags-tag {
     display: flex;
     align-items: center;
-    background-color: #3282F7;
     border-radius: .3rem;
     padding: 1rem;
     height: 0vh; }
@@ -61,6 +83,15 @@ body {
   .section_tags-delete {
     height: 2vh;
     filter: invert(100%) sepia(3%) saturate(1%) hue-rotate(20deg) brightness(105%) contrast(100%); }
+
+div[data-type="ingredients"] {
+  background-color: #3282F7; }
+
+div[data-type="appareils"] {
+  background-color: #68D9A4; }
+
+div[data-type="ustensils"] {
+  background-color: #ED6454; }
 
 .recherche {
   border: 2px solid yellow;
@@ -95,24 +126,8 @@ main {
   margin-left: 2rem; }
 
 .selection_ingredients {
-  display: flex;
-  background-color: #3282F7;
-  position: absolute; }
+  background-color: #3282F7; }
   .selection_ingredients .datalist_ingredients {
-    padding: 1rem; }
-
-.selection_appareils {
-  display: flex;
-  background-color: #68D9A4;
-  position: absolute; }
-  .selection_appareils .datalist_appareils {
-    padding: 1rem; }
-
-.selection_ustensils {
-  display: flex;
-  background-color: #ED6454;
-  position: absolute; }
-  .selection_ustensils .datalist_ustensils {
     padding: 1rem; }
 
 .recettes {
@@ -122,9 +137,11 @@ main {
   flex-wrap: wrap; }
   .recettes_recette {
     border: 2px solid mediumblue;
-    width: 32%;
+    width: 31%;
+    height: 60vh;
     margin: 1rem 1rem 1rem 0rem;
-    background-color: #E7E7E7; }
+    background-color: #E7E7E7;
+    overflow: auto; }
     .recettes_recette-illustration {
       border: 2px solid forestgreen; }
       .recettes_recette-illustration img {
