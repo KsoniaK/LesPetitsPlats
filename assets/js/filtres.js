@@ -100,7 +100,7 @@ function deleteTags(e){
 // -------
 // Fonction qui va lancer le filtre principal et les tags
 function search(){
-  let results = principalFilterBis();
+  let results = principalFilterNativeLoop();
   if (divsTag.length > 0)
     results = filteredRecipesByTag(results);
     displayRecipes(results);
@@ -123,41 +123,41 @@ function search(){
 //   return filteredRecipes;
 // };
 
-// ------------------------------ TEST ---------------------------------------------
+// ------------------------------ TEST BOUCLE NATIVE ---------------------------------------------
 
 // Filtre principal
-function principalFilterBis(){
+function principalFilterNativeLoop(){
   // Récupérer la saisie de l'utilisateur
   let array = [];
   const wordSearched = document.getElementById('recherche_principale-input').value.toLowerCase();
-  let names, descriptions, ingredients, element3Bis;
+  let names, descriptions, ingredients;
 
-  for (let i = 0; i < recipes.length; i++) {
-    names = recipes[i].name;
-    descriptions = recipes[i].description;
-    // if (wordSearched.length > 2) {
-        if(names.toLowerCase().includes(wordSearched) || descriptions.toLowerCase().includes(wordSearched)){
-          array.push(recipes[i]);
-        };
-      }
-      
-      for (let i = 0; i < recipes.length; i++) {
-        ingredients = recipes[i].ingredients
-        for (let i = 0; i < ingredients.length; i++) {
-          element3Bis = ingredients[i].ingredient;
+  // if (wordSearched.length > 2) {
+    for (let i = 0; i < recipes.length; i++) {
+      names = recipes[i].name;
+      descriptions = recipes[i].description;
+          if(names.toLowerCase().includes(wordSearched)){
+            array.push(recipes[i]);
+          };
+          if(descriptions.toLowerCase().includes(wordSearched)){
+            array.push(recipes[i]);
+          };
 
-          // if (element3Bis.toLowerCase().includes(wordSearched)) {
-          //   array.push(recipes[i]);
-          // }
+        for (let j = 0; j < recipes[i].ingredients.length; j++) {
+          ingredients = recipes[i].ingredients[j].ingredient
+
+          if (ingredients.toLowerCase().includes(wordSearched)){
+            array.push(recipes[i]);
+          }
         }
       // }
-    }
+  }
+  array = [... new Set(array)]
   // console.log(array);
   return array;
 };
-// principalFilterBis();
 
-// ------------------------------ TEST ---------------------------------------------
+// ------------------------------ TEST BOUCLE NATIVE ---------------------------------------------
 
 // Filtres tags
 function filteredRecipesByTag(datas) {
