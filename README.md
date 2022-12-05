@@ -1,4 +1,5 @@
-# Projet Les petits plats: Développer un algorithme de recherche en JavaScript
+# Projet Les petits plats : Développer un algorithme de recherche en JavaScript
 
-° Présentation du projet PDF:
-° Lien GitHub pages: 
+PDF Présentation du projet : 
+
+Lien GitHub Pages du projet :  
