@@ -1,11 +1,29 @@
 /* le header */
 header{
-  border: 2px solid red;
-  margin-right: 2rem;
-  margin-left: 2rem;
+  height: 60vh;
+  #header_image-container{
+    background-image: url("/assets/img/header-bg.jpg");
+    background-size: cover;
+    background-repeat: no-repeat;
+    // position: absolute;
+    height: 60vh;
+    width: 100%;
+     .logo-header{
+      padding: 2rem;
+      width: 20%;
+     }
     h1{
-      border: 2px solid khaki;
+      font-family: "Anton", sans-serif;
+      font-weight: 400;
+      font-style: normal;
       text-align: center;
-      margin: 0!important;
+      color: #FFD15B;
+      font-size: 3rem;
     }
+    .recherche{
+      width: 70%;
+      margin-left: auto;
+      margin-right: auto;
+    }
+  }
 }

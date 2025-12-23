@@ -6,6 +6,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="icon" href="assets/img/logo.png">
     <link rel="stylesheet" href="assets/style/sass/style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Anton&display=swap" rel="stylesheet">
     <title>Projet Les Petits Plats</title>
     <script src="assets/js/index.js"></script>
     <script defer src="assets/js/test.js"></script>
@@ -13,51 +16,80 @@
 <body>
     <!-- header -->
     <header>
-        <!-- titre -->
-        <h1>
-            <!-- logo -->
-            <img src="assets/img/logo.png" alt="logo">
-        </h1>
-        <!-- fonction rechercher -->
-        <section class="recherche">
-            <!-- champs de saisie -->
-            <input id="recherche_principale-input" class="recherche_input" type="text">
-            <!-- emoticone loupe -->
-            <img class="recherche_loupe" src="assets/img/search.png" alt="rechercher">
-        </section>
+        <div id="header_image-container">
+                <!-- logo -->
+                <img class="logo-header" src="assets/img/logo.png" alt="logo">
+                <!-- titre -->
+                <h1>CHERCHEZ PARMI PLUS DE 1500 RECETTES<br>DU QUOTIDIEN SIMPLES ET DÉLICIEUSES</h1>
+            <!-- fonction rechercher -->
+            <section class="recherche">
+                <!-- champs de saisie -->
+                <input id="recherche_principale-input" class="recherche_input" type="text" placeholder="Rechercher une recette, un ingrédient, ...">
+                <!-- emoticone effacer + loupe -->
+                <img class="recherche_delete recherche_img" src="assets/img/delete-input.png" alt="" data-filtre=""/>
+                <img class="recherche_loupe" src="assets/img/search.png" alt="rechercher">
+            </section>
+        </div>
     </header>
     <!-- main -->
     <main>
-        <!-- tags -->
-        <section id="section_tags" class="section_tags"></section>
         <!-- section filtres -->
        <section id="filtres" class="filtres">
               <!-- ingrédients -->
+               <div class="inputs-container">
             <section class="container_ingredients" data-type="ingredients">
-                <input id="filtres_ingredients" type="text" class="filtres_input" placeholder="Ingredients" data-filtre="ingredients">
-                <img class="filtres-img-ing" src="assets/img/down-arrow.png" alt="dérouler la liste des ingrédients" data-filtre="ingredients"/>
-                <article id="selection_ingredients" class="selection_ingredients">
-                    <datalist id="datalist-ingredients" class="datalist_ingredients datalist_filtres" data-filtre="ingredients"></datalist>
-                </article>
+                <div class="title-img_container">
+                    <p class="filtre-title">Ingrédients</p>
+                    <img class="" src="assets/img/down-arrow.png" alt="" data-filtre=""/>
+                </div>
+                <div class="filtre-content">
+                    <input id="filtres_ingredients" type="text" class="filtres_input" data-filtre="ingredients">
+                    <img class="filtres-img-ing" src="assets/img/delete-input.png" alt="dérouler la liste des ingrédients" data-filtre="ingredients"/>
+                    <img class="filtres-img-ing" src="assets/img/search.png" alt="dérouler la liste des ingrédients" data-filtre="ingredients"/>
+                    <article id="selection_ingredients" class="selection_ingredients">
+                        <ul id="datalist-ingredients" class="datalist_ingredients datalist_filtres" data-filtre="ingredients"></ul>
+                    </article>
+                </div>
             </section>
                 <!-- appareil -->
             <section class="container_appareils" data-type="appareils">
-                <input id="filtres_appareils" type="text" class="filtres_input" placeholder="Appareils" data-filtre="appareils">
-                <img class="filtres-img-app" src="assets/img/down-arrow.png" alt="dérouler la liste des appareils" data-filtre="appareils"/>
-                <article id="selection_appareils" class="selection_appareils">
-                    <datalist id="datalist-appareils" class="datalist_appareils datalist_filtres" data-filtre="appareils"></datalist>
-                </article>
+                <div class="title-img_container">
+                    <p class="filtre-title">Appareils</p>
+                    <img class="" src="assets/img/down-arrow.png" alt="" data-filtre=""/>
+                </div>
+                <div class="filtre-content">
+                    <input id="filtres_appareils" type="text" class="filtres_input" data-filtre="appareils">
+                    <img class="filtres-img-app" src="assets/img/delete-input.png" alt="dérouler la liste des appareils" data-filtre="appareils"/>
+                    <img class="filtres-img-app" src="assets/img/search.png" alt="dérouler la liste des appareils" data-filtre="appareils"/>
+                    <article id="selection_appareils" class="selection_appareils">
+                        <ul id="datalist-appareils" class="datalist_appareils datalist_filtres" data-filtre="appareils"></ul>
+                    </article>
+                </div>
             </section>
               <!-- ustensils -->
             <section class="container_ustensils" data-type="ustensils">
-                <input id="filtres_ustensils" type="text" class="filtres_input" placeholder="Ustensils" data-filtre="ustensils">
-                <img class="filtres-img-ust" src="assets/img/down-arrow.png" alt="dérouler la liste des ustensils" data-filtre="ustensils"/>
-                <article id="selection_ustensils" class="selection_ustensils">
-                    <datalist id="datalist-ustensils" class="datalist_ustensils datalist_filtres" data-filtre="ustensils"></datalist>
-                </article>
+                <div class="title-img_container">
+                    <p class="filtre-title">Ustensils</p>
+                    <img class="" src="assets/img/down-arrow.png" alt="" data-filtre=""/>
+                </div>
+                <div class="filtre-content">
+                    <input id="filtres_ustensils" type="text" class="filtres_input" data-filtre="ustensils">
+                    <img class="filtres-img-ust" src="assets/img/delete-input.png" alt="dérouler la liste des ustensils" data-filtre="ustensils"/>
+                    <img class="filtres-img-ust" src="assets/img/search.png" alt="dérouler la liste des ustensils" data-filtre="ustensils"/>
+                    <article id="selection_ustensils" class="selection_ustensils">
+                        <ul id="datalist-ustensils" class="datalist_ustensils datalist_filtres" data-filtre="ustensils"></ul>
+                    </article>
+                </div>
             </section>
+        </div>
+            <section class="reste-recette">
+                    <p></p>
+            </section>
+            <p class="no-result-content"></p>
        </section>
-       <!-- recette 1 -->
+        <!-- tags -->
+        <section id="section_tags" class="section_tags"></section>
+       <!-- recettes -->
        <section id="recettes" class="recettes"></section>
     </main>
     <!-- scripts -->
