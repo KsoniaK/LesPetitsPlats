@@ -1,6 +1,5 @@
 // tags
 .section_tags{
-  border: 2px solid red;
   padding: 1rem;
   display: flex;
     &-tag{
@@ -12,21 +11,17 @@
       height: 0vh;
         & p{
           padding-right: .5rem;
-          color: white;
+          color: black;
         }
     }
     // Supprimer tag
     &-delete{
-      height: 2vh;
-      filter: invert(100%) sepia(3%) saturate(1%) hue-rotate(20deg) brightness(105%) contrast(100%);
+      height: 3vh;
+      cursor: pointer;
+      // filter: invert(100%) sepia(3%) saturate(1%) hue-rotate(20deg) brightness(105%) contrast(100%);
     }
 }
-div[data-type="ingredients"] {
-  background-color: #3282F7;
-}
-div[data-type="appareils"] {
-  background-color: #68D9A4;
-}
-div[data-type="ustensils"] {
-  background-color: #ED6454;
+div[data-type="ingredients"], div[data-type="appareils"], div[data-type="ustensils"] {
+  background-color: #FFD15B;
+  margin-right: 1rem;
 }

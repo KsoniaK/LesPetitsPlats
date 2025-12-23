@@ -1,3 +1,4 @@
+@charset "UTF-8";
 * {
   box-sizing: border-box; }
 
@@ -9,66 +10,167 @@ body {
   font-size: 13px; }
 
 .filtres {
-  border: 2px solid fuchsia;
   display: flex;
-  padding: 1rem; }
-  .filtres .container_ingredients, .filtres .container_appareils, .filtres .container_ustensils {
-    margin-right: 1rem; }
-    .filtres .container_ingredients #datalist-ingredients, .filtres .container_appareils #datalist-ingredients, .filtres .container_ustensils #datalist-ingredients {
-      background-color: #3282F7; }
-    .filtres .container_ingredients #datalist-appareils, .filtres .container_appareils #datalist-appareils, .filtres .container_ustensils #datalist-appareils {
-      background-color: #68D9A4; }
-    .filtres .container_ingredients #datalist-ustensils, .filtres .container_appareils #datalist-ustensils, .filtres .container_ustensils #datalist-ustensils {
-      background-color: #ED6454; }
-    .filtres .container_ingredients .datalist_ingredients, .filtres .container_ingredients .datalist_appareils, .filtres .container_ingredients .datalist_ustensils, .filtres .container_appareils .datalist_ingredients, .filtres .container_appareils .datalist_appareils, .filtres .container_appareils .datalist_ustensils, .filtres .container_ustensils .datalist_ingredients, .filtres .container_ustensils .datalist_appareils, .filtres .container_ustensils .datalist_ustensils {
-      display: none;
-      position: absolute;
-      row-gap: 7px;
-      border-radius: 0 0 5px 5px;
-      padding: 10px 20px;
-      justify-content: space-between;
-      flex-wrap: wrap;
-      z-index: 2;
-      color: white;
-      width: 50%;
-      max-height: 287px;
-      overflow-y: scroll; }
-      .filtres .container_ingredients .datalist_ingredients option, .filtres .container_ingredients .datalist_appareils option, .filtres .container_ingredients .datalist_ustensils option, .filtres .container_appareils .datalist_ingredients option, .filtres .container_appareils .datalist_appareils option, .filtres .container_appareils .datalist_ustensils option, .filtres .container_ustensils .datalist_ingredients option, .filtres .container_ustensils .datalist_appareils option, .filtres .container_ustensils .datalist_ustensils option {
-        color: white;
-        width: 30%; }
-    .filtres .container_ingredients .active, .filtres .container_appareils .active, .filtres .container_ustensils .active {
-      display: flex; }
-  .filtres input {
-    width: 100%;
-    text-align: center;
-    padding: 1rem;
-    border-radius: .3rem;
-    color: white;
-    font-weight: bold; }
-  .filtres img {
-    width: 5%;
-    position: absolute;
-    width: 1.5%;
-    top: 36%;
-    filter: invert(100%) sepia(3%) saturate(1%) hue-rotate(20deg) brightness(105%) contrast(100%); }
-  .filtres-img-ing {
-    left: 16%; }
-  .filtres-img-app {
-    left: 33%; }
-  .filtres-img-ust {
-    left: 49%; }
-  .filtres #filtres_ingredients {
-    border: 2px solid slateblue;
-    background-color: #3282F7; }
-  .filtres #filtres_appareils {
-    border: 2px solid mediumvioletred;
-    background-color: #68D9A4; }
-  .filtres #filtres_ustensils {
-    border: 2px solid salmon;
-    background-color: #ED6454; }
+  align-items: center;
+  justify-content: space-between; }
+  .filtres .inputs-container {
+    display: flex;
+    gap: 4rem;
+    margin-top: 1.5rem;
+    align-items: flex-start; }
+    .filtres .inputs-container .container_ingredients,
+    .filtres .inputs-container .container_appareils,
+    .filtres .inputs-container .container_ustensils {
+      position: relative;
+      width: 180px;
+      background-color: white;
+      border-radius: 5px;
+      /* ============================= */
+      /* HEADER */
+      /* ============================= */
+      /* ============================= */
+      /* CONTENU */
+      /* ============================= */
+      /* ============================= */
+      /* ÉTAT ACTIF */
+      /* ============================= */ }
+      .filtres .inputs-container .container_ingredients .title-img_container,
+      .filtres .inputs-container .container_appareils .title-img_container,
+      .filtres .inputs-container .container_ustensils .title-img_container {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding-left: 1rem;
+        padding-right: 1rem;
+        cursor: pointer; }
+        .filtres .inputs-container .container_ingredients .title-img_container .filtre-title,
+        .filtres .inputs-container .container_appareils .title-img_container .filtre-title,
+        .filtres .inputs-container .container_ustensils .title-img_container .filtre-title {
+          font-size: .9rem; }
+        .filtres .inputs-container .container_ingredients .title-img_container img,
+        .filtres .inputs-container .container_appareils .title-img_container img,
+        .filtres .inputs-container .container_ustensils .title-img_container img {
+          width: 12px;
+          transition: transform .3s ease; }
+      .filtres .inputs-container .container_ingredients .filtre-content,
+      .filtres .inputs-container .container_appareils .filtre-content,
+      .filtres .inputs-container .container_ustensils .filtre-content {
+        position: absolute;
+        top: 100%;
+        left: 0;
+        width: 100%;
+        z-index: 10;
+        display: none;
+        padding: 0;
+        height: auto;
+        background-color: white;
+        border-radius: 0px 0px 5px 5px;
+        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        /* icônes dans l’input */
+        /* loupe */
+        /* croix */
+        /* croix visible quand input rempli */
+        /* ============================= */
+        /* LISTES */
+        /* ============================= */ }
+        .filtres .inputs-container .container_ingredients .filtre-content .filtres_input,
+        .filtres .inputs-container .container_appareils .filtre-content .filtres_input,
+        .filtres .inputs-container .container_ustensils .filtre-content .filtres_input {
+          width: 100%;
+          padding: .6rem 3.5rem .6rem .6rem;
+          border-radius: 4px;
+          border: 1px solid #c6c6c6;
+          font-size: .85rem;
+          outline: none; }
+        .filtres .inputs-container .container_ingredients .filtre-content .filtres-img-ing,
+        .filtres .inputs-container .container_ingredients .filtre-content .filtres-img-app,
+        .filtres .inputs-container .container_ingredients .filtre-content .filtres-img-ust,
+        .filtres .inputs-container .container_appareils .filtre-content .filtres-img-ing,
+        .filtres .inputs-container .container_appareils .filtre-content .filtres-img-app,
+        .filtres .inputs-container .container_appareils .filtre-content .filtres-img-ust,
+        .filtres .inputs-container .container_ustensils .filtre-content .filtres-img-ing,
+        .filtres .inputs-container .container_ustensils .filtre-content .filtres-img-app,
+        .filtres .inputs-container .container_ustensils .filtre-content .filtres-img-ust {
+          position: absolute;
+          top: 22px;
+          width: 14px;
+          cursor: pointer; }
+        .filtres .inputs-container .container_ingredients .filtre-content img[src*="search"],
+        .filtres .inputs-container .container_appareils .filtre-content img[src*="search"],
+        .filtres .inputs-container .container_ustensils .filtre-content img[src*="search"] {
+          right: 17px; }
+        .filtres .inputs-container .container_ingredients .filtre-content img[src*="delete-input"],
+        .filtres .inputs-container .container_appareils .filtre-content img[src*="delete-input"],
+        .filtres .inputs-container .container_ustensils .filtre-content img[src*="delete-input"] {
+          right: 35px;
+          opacity: 0;
+          pointer-events: none;
+          transition: opacity .2s; }
+        .filtres .inputs-container .container_ingredients .filtre-content.has-value img[src*="delete-input"],
+        .filtres .inputs-container .container_appareils .filtre-content.has-value img[src*="delete-input"],
+        .filtres .inputs-container .container_ustensils .filtre-content.has-value img[src*="delete-input"] {
+          opacity: 1;
+          pointer-events: auto; }
+        .filtres .inputs-container .container_ingredients .filtre-content .selection_ingredients,
+        .filtres .inputs-container .container_ingredients .filtre-content .selection_appareils,
+        .filtres .inputs-container .container_ingredients .filtre-content .selection_ustensils,
+        .filtres .inputs-container .container_appareils .filtre-content .selection_ingredients,
+        .filtres .inputs-container .container_appareils .filtre-content .selection_appareils,
+        .filtres .inputs-container .container_appareils .filtre-content .selection_ustensils,
+        .filtres .inputs-container .container_ustensils .filtre-content .selection_ingredients,
+        .filtres .inputs-container .container_ustensils .filtre-content .selection_appareils,
+        .filtres .inputs-container .container_ustensils .filtre-content .selection_ustensils {
+          margin-top: .8rem; }
+          .filtres .inputs-container .container_ingredients .filtre-content .selection_ingredients .datalist_filtres,
+          .filtres .inputs-container .container_ingredients .filtre-content .selection_appareils .datalist_filtres,
+          .filtres .inputs-container .container_ingredients .filtre-content .selection_ustensils .datalist_filtres,
+          .filtres .inputs-container .container_appareils .filtre-content .selection_ingredients .datalist_filtres,
+          .filtres .inputs-container .container_appareils .filtre-content .selection_appareils .datalist_filtres,
+          .filtres .inputs-container .container_appareils .filtre-content .selection_ustensils .datalist_filtres,
+          .filtres .inputs-container .container_ustensils .filtre-content .selection_ingredients .datalist_filtres,
+          .filtres .inputs-container .container_ustensils .filtre-content .selection_appareils .datalist_filtres,
+          .filtres .inputs-container .container_ustensils .filtre-content .selection_ustensils .datalist_filtres {
+            display: flex;
+            flex-direction: column;
+            gap: .4rem;
+            list-style: none;
+            padding: 0;
+            margin: 0;
+            max-height: 220px;
+            overflow-y: auto; }
+            .filtres .inputs-container .container_ingredients .filtre-content .selection_ingredients .datalist_filtres li,
+            .filtres .inputs-container .container_ingredients .filtre-content .selection_appareils .datalist_filtres li,
+            .filtres .inputs-container .container_ingredients .filtre-content .selection_ustensils .datalist_filtres li,
+            .filtres .inputs-container .container_appareils .filtre-content .selection_ingredients .datalist_filtres li,
+            .filtres .inputs-container .container_appareils .filtre-content .selection_appareils .datalist_filtres li,
+            .filtres .inputs-container .container_appareils .filtre-content .selection_ustensils .datalist_filtres li,
+            .filtres .inputs-container .container_ustensils .filtre-content .selection_ingredients .datalist_filtres li,
+            .filtres .inputs-container .container_ustensils .filtre-content .selection_appareils .datalist_filtres li,
+            .filtres .inputs-container .container_ustensils .filtre-content .selection_ustensils .datalist_filtres li {
+              font-size: .8rem;
+              cursor: pointer; }
+              .filtres .inputs-container .container_ingredients .filtre-content .selection_ingredients .datalist_filtres li:hover,
+              .filtres .inputs-container .container_ingredients .filtre-content .selection_appareils .datalist_filtres li:hover,
+              .filtres .inputs-container .container_ingredients .filtre-content .selection_ustensils .datalist_filtres li:hover,
+              .filtres .inputs-container .container_appareils .filtre-content .selection_ingredients .datalist_filtres li:hover,
+              .filtres .inputs-container .container_appareils .filtre-content .selection_appareils .datalist_filtres li:hover,
+              .filtres .inputs-container .container_appareils .filtre-content .selection_ustensils .datalist_filtres li:hover,
+              .filtres .inputs-container .container_ustensils .filtre-content .selection_ingredients .datalist_filtres li:hover,
+              .filtres .inputs-container .container_ustensils .filtre-content .selection_appareils .datalist_filtres li:hover,
+              .filtres .inputs-container .container_ustensils .filtre-content .selection_ustensils .datalist_filtres li:hover {
+                font-weight: bold; }
+      .filtres .inputs-container .container_ingredients.active .filtre-content,
+      .filtres .inputs-container .container_appareils.active .filtre-content,
+      .filtres .inputs-container .container_ustensils.active .filtre-content {
+        display: block;
+        height: auto;
+        padding: .8rem; }
+  .filtres .reste-recette p {
+    font-family: "Anton", sans-serif;
+    font-weight: 400;
+    font-style: normal; }
 
 .section_tags {
-  border: 2px solid red;
   padding: 1rem;
   display: flex; }
   .section_tags-tag {
@@ -79,83 +181,96 @@ body {
     height: 0vh; }
     .section_tags-tag p {
       padding-right: .5rem;
-      color: white; }
+      color: black; }
   .section_tags-delete {
-    height: 2vh;
-    filter: invert(100%) sepia(3%) saturate(1%) hue-rotate(20deg) brightness(105%) contrast(100%); }
+    height: 3vh;
+    cursor: pointer; }
 
-div[data-type="ingredients"] {
-  background-color: #3282F7; }
-
-div[data-type="appareils"] {
-  background-color: #68D9A4; }
-
-div[data-type="ustensils"] {
-  background-color: #ED6454; }
+div[data-type="ingredients"], div[data-type="appareils"], div[data-type="ustensils"] {
+  background-color: #FFD15B;
+  margin-right: 1rem; }
 
 .recherche {
-  border: 2px solid yellow;
   display: flex;
   padding: 1rem 2rem 1rem 1rem; }
   .recherche_input {
-    border: 2px solid firebrick;
     width: 100%;
     height: 5vh;
-    background-color: #E7E7E7;
-    border-radius: .3rem 0rem 0rem .3rem; }
+    border-radius: .3rem 0rem 0rem .3rem;
+    border: none; }
   .recherche_loupe {
-    border: 2px solid gold;
-    width: 3%;
+    width: 4%;
     padding: .5rem;
     background-color: #E7E7E7;
-    border-radius: 0rem .3rem .3rem 0rem; }
+    border-radius: 0rem .3rem .3rem 0rem;
+    right: 8%;
+    filter: invert(100%) sepia(3%) saturate(1%) hue-rotate(20deg) brightness(105%) contrast(100%); }
+  .recherche_delete {
+    right: 8%;
+    width: 4%;
+    padding: .5rem;
+    cursor: pointer; }
 
 /* le header */
 header {
-  border: 2px solid red;
-  margin-right: 2rem;
-  margin-left: 2rem; }
-  header h1 {
-    border: 2px solid khaki;
-    text-align: center;
-    margin: 0 !important; }
+  height: 60vh; }
+  header #header_image-container {
+    background-image: url("/assets/img/header-bg.jpg");
+    background-size: cover;
+    background-repeat: no-repeat;
+    height: 60vh;
+    width: 100%; }
+    header #header_image-container .logo-header {
+      padding: 2rem;
+      width: 20%; }
+    header #header_image-container h1 {
+      font-family: "Anton", sans-serif;
+      font-weight: 400;
+      font-style: normal;
+      text-align: center;
+      color: #FFD15B;
+      font-size: 3rem; }
+    header #header_image-container .recherche {
+      width: 70%;
+      margin-left: auto;
+      margin-right: auto; }
 
 main {
-  border: 2px solid green;
-  margin-right: 2rem;
-  margin-left: 2rem; }
+  padding-right: 2rem;
+  padding-left: 2rem;
+  background-color: #E7E7E7; }
 
-.selection_ingredients {
-  background-color: #3282F7; }
-  .selection_ingredients .datalist_ingredients {
-    padding: 1rem; }
+.selection_ingredients .datalist_ingredients {
+  padding: 1rem; }
 
 .recettes {
-  border: 2px solid steelblue;
   display: flex;
   justify-content: space-around;
   flex-wrap: wrap; }
   .recettes_recette {
-    border: 2px solid mediumblue;
     width: 31%;
-    height: 60vh;
+    height: 100vh;
     margin: 1rem 1rem 1rem 0rem;
-    background-color: #E7E7E7;
-    overflow: auto; }
+    background-color: white;
+    overflow: auto;
+    border-radius: 1rem;
+    cursor: pointer; }
     .recettes_recette-illustration {
-      border: 2px solid forestgreen; }
+      height: 40%; }
       .recettes_recette-illustration img {
-        width: 100%; }
+        width: 100%;
+        height: 100%;
+        object-fit: cover; }
     .recettes_recette-description {
-      padding: .5rem; }
+      padding: 1.5rem; }
       .recettes_recette-description .container {
-        border: 2px solid lawngreen;
         display: flex;
         justify-content: space-between; }
         .recettes_recette-description .container h2 {
           margin: 0;
-          font-size: 1rem;
-          font-weight: normal; }
+          font-family: "Anton", sans-serif;
+          font-weight: 400;
+          font-style: normal; }
         .recettes_recette-description .container_temps {
           align-items: center;
           display: flex; }
@@ -163,14 +278,21 @@ main {
             height: 2vh;
             margin-right: .5rem; }
           .recettes_recette-description .container_temps span {
-            font-weight: bold; }
+            position: relative;
+            padding: .5rem;
+            bottom: 950%;
+            border-radius: 1rem;
+            background-color: #FFD15B;
+            color: black; }
       .recettes_recette-description .ingredients_etapes {
-        border: 2px solid tan;
-        display: flex;
         margin-top: 1rem; }
-        .recettes_recette-description .ingredients_etapes-ingredients, .recettes_recette-description .ingredients_etapes-etapes {
-          width: 50%; }
-          .recettes_recette-description .ingredients_etapes-ingredients p, .recettes_recette-description .ingredients_etapes-etapes p {
+        .recettes_recette-description .ingredients_etapes-ingredients {
+          display: grid;
+          grid-template-columns: repeat(2, 1fr);
+          grid-gap: 20px; }
+          .recettes_recette-description .ingredients_etapes-ingredients p {
             margin: 0; }
+    .recettes_recette h3 {
+      color: gray; }
 
 /*# sourceMappingURL=style.css.map */
