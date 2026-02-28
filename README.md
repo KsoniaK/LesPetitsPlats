@@ -9,7 +9,7 @@ Après avoir édité des livres de cuisine pendant plusieurs années, l’entrep
 - HTML
 - SASS
 
-## GitHub
+## GitHub Pages
 
 https://ksoniak.github.io/LesPetitsPlats/
 
