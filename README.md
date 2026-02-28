@@ -1,6 +1,16 @@
 # Projet Les petits plats : Développer un algorithme de recherche en JavaScript
 
-PDF Présentation du projet : [Développer un algorithme de recherche en JavaScript.pdf](https://github.com/user-attachments/files/23443161/Developper.un.algorithme.de.recherche.en.JavaScript.pdf)
+Après avoir édité des livres de cuisine pendant plusieurs années, l’entreprise 
+“Les petits plats” a décidé de se lancer dans un nouveau projet : réaliser son propre site de recettes de cuisine à l’instar de Marmiton ou 750g.
 
+## Technologies
 
-Lien GitHub Pages du projet :  https://ksoniak.github.io/SoniaKechit_7_09082022/
+- JS
+- HTML
+- CSS
+- SASS
+
+## GitHub
+
+https://ksoniak.github.io/LesPetitsPlats/
+
