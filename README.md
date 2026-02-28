@@ -7,7 +7,6 @@ Après avoir édité des livres de cuisine pendant plusieurs années, l’entrep
 
 - JS
 - HTML
-- CSS
 - SASS
 
 ## GitHub
