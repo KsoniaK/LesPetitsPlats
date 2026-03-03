@@ -190,7 +190,8 @@ div[data-type="ingredients"], div[data-type="appareils"], div[data-type="ustensi
     width: 100%;
     height: 5vh;
     border-radius: .3rem 0rem 0rem .3rem;
-    border: none; }
+    border: none;
+    padding: 1rem; }
   .recherche_loupe {
     position: absolute;
     width: 2%;
@@ -259,6 +260,14 @@ main {
         width: 100%;
         height: 100%;
         object-fit: cover; }
+      .recettes_recette-illustration span {
+        position: relative;
+        padding: .5rem;
+        bottom: 90%;
+        border-radius: 1rem;
+        background-color: #FFD15B;
+        color: black;
+        left: 80%; }
     .recettes_recette-description {
       padding: 1.5rem; }
       .recettes_recette-description .container {
@@ -275,13 +284,6 @@ main {
           .recettes_recette-description .container_temps-img {
             height: 2vh;
             margin-right: .5rem; }
-          .recettes_recette-description .container_temps span {
-            position: relative;
-            padding: .5rem;
-            bottom: 950%;
-            border-radius: 1rem;
-            background-color: #FFD15B;
-            color: black; }
       .recettes_recette-description .ingredients_etapes {
         margin-top: 1rem; }
         .recettes_recette-description .ingredients_etapes-ingredients {

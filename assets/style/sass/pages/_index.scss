@@ -28,6 +28,15 @@ main{
               height: 100%;
               object-fit: cover;
             }
+            & span{
+              position: relative;
+              padding: .5rem;
+              bottom: 90%;
+              border-radius: 1rem;
+              background-color: #FFD15B;
+              color: black;
+              left: 80%;
+            }
         }
         &-description{
           padding: 1.5rem;
@@ -46,14 +55,6 @@ main{
                       &-img{
                         height: 2vh;
                         margin-right: .5rem;
-                      }
-                      span{
-                        position: relative;
-                        padding: .5rem;
-                        bottom: 950%;
-                        border-radius: 1rem;
-                        background-color: #FFD15B;
-                        color: black;
                       }
                 }
             }

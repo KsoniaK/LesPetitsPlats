@@ -29,12 +29,13 @@
       <article class="recettes_recette">
         <div class="recettes_recette-illustration">
           <img src="assets/img/${recipe.image || 'placeholder.png'}" alt="${recipe.name}">
+          <span>${recipe.time} min</span>
         </div>
         <div class="recettes_recette-description">
           <div class="container">
             <h2>${recipe.name}</h2>
             <div class="container_temps">
-              <span>${recipe.time} min</span>
+            <span>${recipe.time} min</span>
             </div>
           </div>
           <div class="ingredients_etapes">
