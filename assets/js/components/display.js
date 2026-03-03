@@ -35,7 +35,6 @@
           <div class="container">
             <h2>${recipe.name}</h2>
             <div class="container_temps">
-            <span>${recipe.time} min</span>
             </div>
           </div>
           <div class="ingredients_etapes">
