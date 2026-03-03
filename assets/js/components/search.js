@@ -3,25 +3,37 @@
   const deleteIconMain = document.querySelector('.recherche_delete');
   const loupeIcon = document.querySelector('.recherche_loupe');
 
+  // Filtre de la recherche principale
   function principalFilterNativeLoop() {
-    const wordSearched = rechercheInput.value.toLowerCase();
+    // On récupère la saisie utilisateur
+    let array = [];
+    const wordSearched = document.getElementById('recherche_principale-input').value.toLowerCase();
+    let names, descriptions, ingredients;
 
-    // Pas de recherche < 3 caractères si pas de tags
-    if (wordSearched.length < 3 && window.divsTag.length === 0) return window.recipes;
+    for (let i = 0; i < recipes.length; i++){
+      names = recipes[i].name;
+      descriptions = recipes[i].description;
 
-    const results = new Set();
-    window.recipes.forEach(recipe => {
-      if (
-        recipe.name.toLowerCase().includes(wordSearched) ||
-        recipe.description.toLowerCase().includes(wordSearched) ||
-        recipe.ingredients.some(ing => ing.ingredient.toLowerCase().includes(wordSearched))
-      ) {
-        results.add(recipe);
-      }
-    });
-    return [...results];
-  }
+        if(names.toLowerCase().includes(wordSearched)){
+          array.push(recipes[i])
+        };
 
+        if(descriptions.toLowerCase().includes(wordSearched)){
+          array.push(recipes[i])
+        };
+
+        for (let j = 0; j < recipes[i].ingredients.length; j++){
+          ingredients = recipes[i].ingredients[j].ingredient
+        };
+          if(ingredients.toLowerCase().includes(wordSearched)){
+            array.push(recipes[i])
+          };
+    };
+    array = [...new Set(array)]
+    return array;
+  };
+
+  // Filtre par Tag
   function filteredRecipesByTag(datas) {
     return window.divsTag.reduce((res, tag) => {
       switch (tag.type) {
