@@ -12,7 +12,8 @@ body {
 .filtres {
   display: flex;
   align-items: center;
-  justify-content: space-between; }
+  justify-content: space-between;
+  padding-right: 2rem; }
   .filtres .inputs-container {
     display: flex;
     gap: 4rem;
@@ -199,15 +200,20 @@ div[data-type="ingredients"], div[data-type="appareils"], div[data-type="ustensi
     border-radius: .3rem 0rem 0rem .3rem;
     border: none; }
   .recherche_loupe {
-    width: 4%;
+    position: absolute;
+    width: 2%;
     padding: .5rem;
     background-color: #E7E7E7;
-    border-radius: 0rem .3rem .3rem 0rem;
-    right: 8%;
+    border-radius: .3rem .3rem .3rem .3rem;
+    right: 18%;
+    top: 41.8%;
+    cursor: pointer;
     filter: invert(100%) sepia(3%) saturate(1%) hue-rotate(20deg) brightness(105%) contrast(100%); }
   .recherche_delete {
-    right: 8%;
-    width: 4%;
+    position: absolute;
+    right: 20%;
+    top: 41%;
+    width: 3%;
     padding: .5rem;
     cursor: pointer; }
 
