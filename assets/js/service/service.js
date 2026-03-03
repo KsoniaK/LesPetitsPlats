@@ -1,4 +1,5 @@
-const recipes = [
+// recipes disponibles pour tout le projet
+window.recipes = [
     {
         "id": 1,
         "image": "Recette01.jpg",
