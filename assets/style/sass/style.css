@@ -26,15 +26,9 @@ body {
       width: 180px;
       background-color: white;
       border-radius: 5px;
-      /* ============================= */
       /* HEADER */
-      /* ============================= */
-      /* ============================= */
       /* CONTENU */
-      /* ============================= */
-      /* ============================= */
-      /* ÉTAT ACTIF */
-      /* ============================= */ }
+      /* ÉTAT ACTIF */ }
       .filtres .inputs-container .container_ingredients .title-img_container,
       .filtres .inputs-container .container_appareils .title-img_container,
       .filtres .inputs-container .container_ustensils .title-img_container {
@@ -71,9 +65,7 @@ body {
         /* loupe */
         /* croix */
         /* croix visible quand input rempli */
-        /* ============================= */
-        /* LISTES */
-        /* ============================= */ }
+        /* LISTES */ }
         .filtres .inputs-container .container_ingredients .filtre-content .filtres_input,
         .filtres .inputs-container .container_appareils .filtre-content .filtres_input,
         .filtres .inputs-container .container_ustensils .filtre-content .filtres_input {

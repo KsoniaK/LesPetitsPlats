@@ -16,9 +16,7 @@
         background-color: white;
         border-radius: 5px;
 
-        /* ============================= */
         /* HEADER */
-        /* ============================= */
         .title-img_container {
           display: flex;
           justify-content: space-between;
@@ -37,11 +35,9 @@
           }
         }
 
-        /* ============================= */
         /* CONTENU */
-        /* ============================= */
         .filtre-content {
-          position: absolute; // 🔥 superposition
+          position: absolute; // superposition
           top: 100%; // juste en dessous du header
           left: 0;
           width: 100%; // même largeur que le container
@@ -51,7 +47,7 @@
           height: auto; // permet d'ajuster la taille selon le contenu
           background-color: white;
           border-radius: 0px 0px 5px 5px;
-          box-shadow: 0 4px 6px rgba(0,0,0,0.1); // optionnel mais joli
+          box-shadow: 0 4px 6px rgba(0,0,0,0.1);
           .filtres_input {
             width: 100%;
             padding: .6rem 3.5rem .6rem .6rem;
@@ -92,9 +88,7 @@
             }
           }
 
-          /* ============================= */
           /* LISTES */
-          /* ============================= */
           .selection_ingredients,
           .selection_appareils,
           .selection_ustensils {
@@ -102,7 +96,7 @@
 
             .datalist_filtres {
               display: flex;
-              flex-direction: column; // 🔥 vertical
+              flex-direction: column; // vertical
               gap: .4rem;
               list-style: none;
               padding: 0;
@@ -122,9 +116,7 @@
           }
         }
 
-        /* ============================= */
         /* ÉTAT ACTIF */
-        /* ============================= */
         &.active {
           .filtre-content {
             display: block;
