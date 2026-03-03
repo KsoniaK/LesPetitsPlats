@@ -28,7 +28,7 @@
     sectionRecettes.innerHTML = datas.map(recipe => `
       <article class="recettes_recette">
         <div class="recettes_recette-illustration">
-          <img src="assets/img/${recipe.image || 'placeholder.png'}" alt="${recipe.name}">
+          <img src="../img/${recipe.image || 'placeholder.png'}" alt="${recipe.name}">
           <span>${recipe.time} min</span>
         </div>
         <div class="recettes_recette-description">
