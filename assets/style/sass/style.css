@@ -214,7 +214,7 @@ div[data-type="ingredients"], div[data-type="appareils"], div[data-type="ustensi
 header {
   height: 60vh; }
   header #header_image-container {
-    background-image: url("../../img/header-bg.jpg");
+    background-image: url("/LesPetitsPlats/assets/img/header-bg.jpg");
     background-size: cover;
     background-repeat: no-repeat;
     height: 60vh;
