@@ -4,7 +4,7 @@
   const loupeIcon = document.querySelector('.recherche_loupe');
 
   // filtre les recettes à partir du texte saisi
-  function principalFilterNativeLoop() {
+  function principalFilter() {
     const wordSearched = rechercheInput.value.toLowerCase(); // met en minuscule pour comparaison case-insensitive
 
     // Pas de recherche < 3 caractères + pas de tags actifs
@@ -48,7 +48,7 @@
 
   function search() {
     // D’abord filtre texte
-    let results = principalFilterNativeLoop();
+    let results = principalFilter();
       // Puis filtre par tags si présents
       if (window.divsTag.length > 0) results = filteredRecipesByTag(results);
       window.displayRecipes(results); // Met à jour l’affichage
