@@ -95,6 +95,7 @@ body {
         .filtres .inputs-container .container_ingredients .filtre-content img[src*="delete-input"],
         .filtres .inputs-container .container_appareils .filtre-content img[src*="delete-input"],
         .filtres .inputs-container .container_ustensils .filtre-content img[src*="delete-input"] {
+          display: none;
           right: 35px;
           opacity: 0;
           pointer-events: none;
@@ -102,6 +103,7 @@ body {
         .filtres .inputs-container .container_ingredients .filtre-content.has-value img[src*="delete-input"],
         .filtres .inputs-container .container_appareils .filtre-content.has-value img[src*="delete-input"],
         .filtres .inputs-container .container_ustensils .filtre-content.has-value img[src*="delete-input"] {
+          display: inline-block;
           opacity: 1;
           pointer-events: auto; }
         .filtres .inputs-container .container_ingredients .filtre-content .selection_ingredients,

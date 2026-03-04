@@ -74,6 +74,7 @@
 
           /* croix */
           img[src*="delete-input"] {
+            display: none;
             right: 35px;
             opacity: 0;
             pointer-events: none;
@@ -83,11 +84,12 @@
           /* croix visible quand input rempli */
           &.has-value {
             img[src*="delete-input"] {
+              display: inline-block;
               opacity: 1;
               pointer-events: auto;
             }
           }
-
+          
           /* LISTES */
           .selection_ingredients,
           .selection_appareils,
