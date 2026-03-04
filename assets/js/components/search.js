@@ -24,12 +24,13 @@
 
         for (let j = 0; j < recipes[i].ingredients.length; j++){
           ingredients = recipes[i].ingredients[j].ingredient
-        };
+
           if(ingredients.toLowerCase().includes(wordSearched)){
             array.push(recipes[i])
           };
+        }
     };
-    array = [...new Set(array)]
+    array = [...new Set(array)] // opérateur spread pour transformer le Set en tableau.
     return array;
   };
 
