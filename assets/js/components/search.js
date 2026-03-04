@@ -3,26 +3,26 @@
   const deleteIconMain = document.querySelector('.recherche_delete');
   const loupeIcon = document.querySelector('.recherche_loupe');
 
-  // filtre les recettes à partir du texte saisi
-  function principalFilter() {
-    const wordSearched = rechercheInput.value.toLowerCase(); // met en minuscule pour comparaison case-insensitive
+// filtre les recettes à partir du texte saisi
+function principalFilter() {
+  const wordSearched = rechercheInput.value.toLowerCase(); // faire une recherche insensible à la casse
 
-    // Pas de recherche < 3 caractères + pas de tags actifs
-    if (wordSearched.length < 3 && window.divsTag.length === 0) return window.recipes; // on ne filtre pas -> on retourne toutes les recettes
-
-
-    const results = new Set();   // collection sans doublons (empêche une recette d’être ajoutée plusieurs fois)
-    window.recipes.forEach(recipe => {
-      if (
-        recipe.name.toLowerCase().includes(wordSearched) ||
-        recipe.description.toLowerCase().includes(wordSearched) ||
-        recipe.ingredients.some(ing => ing.ingredient.toLowerCase().includes(wordSearched)) // .some() s’arrête dès qu’un match est trouvé
-      ) {
-        results.add(recipe); // Si au moins un critère match = on ajoute la recette au Set
-      }
-    });
-    return [...results]; // Convertit le Set en array (displayRecipes attend un tableau)
+  // Pas de recherche < 3 caractères + pas de tags actifs
+  if (wordSearched.length < 3 && window.divsTag.length === 0) {
+    return window.recipes; // on en filtre pas et on retourne toutes les recettes
   }
+
+  // parcourt le tableau, teste chaque recette et garde uniquement celles qui retournent true = filter() retourne un nouveau tableau
+  return window.recipes.filter(recipe => {
+    return (
+      recipe.name.toLowerCase().includes(wordSearched) ||
+      recipe.description.toLowerCase().includes(wordSearched) ||
+      recipe.ingredients.some(ing => // retourne true dès qu’un seul ingrédient correspond
+        ing.ingredient.toLowerCase().includes(wordSearched)
+      )
+    );
+  });
+}
 
   // Filtre une liste de recettes selon les tags actifs
   function filteredRecipesByTag(datas) {
