@@ -10,6 +10,11 @@
     const wordSearched = document.getElementById('recherche_principale-input').value.toLowerCase();
     let names, descriptions, ingredients;
 
+    // Pas de recherche < 3 caractères + pas de tags actifs
+    if (wordSearched.length < 3 && window.divsTag.length === 0) {
+      return window.recipes; // on en filtre pas et on retourne toutes les recettes
+    }
+
     for (let i = 0; i < recipes.length; i++){
       names = recipes[i].name;
       descriptions = recipes[i].description;
