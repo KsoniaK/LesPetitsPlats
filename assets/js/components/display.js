@@ -17,6 +17,7 @@
     if (resteRecetteDiv) {
       if (datas.length === 0) {
         aucuneRecetteSection.textContent = `"Aucune recette ne contient ${inputContent}, vous pouvez chercher: 'tarte aux pommes', 'poisson', etc ... "`
+        resteRecetteDiv.textContent = `${datas.length} recette trouvée `;
       } else {
         resteRecetteDiv.textContent = `${datas.length} recette${datas.length > 1 ? 's' : ''} trouvée${datas.length > 1 ? 's' : ''}`;
       }
