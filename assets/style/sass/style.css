@@ -182,7 +182,7 @@ body {
     height: 3vh;
     cursor: pointer; }
 
-div[data-type="ingredients"], div[data-type="appareils"], div[data-type="ustensils"] {
+div[data-type="ingredients"], div[data-type="appliance"], div[data-type="ustensils"] {
   background-color: #FFD15B;
   margin-right: 1rem; }
 

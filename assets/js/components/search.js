@@ -34,7 +34,9 @@ function principalFilter() {
             recipe.ingredients.some(ing => ing.ingredient.toLowerCase().includes(tag.value))
           );
         case "appliance":
-          return res.filter(recipe => recipe.appliance.toLowerCase().includes(tag.value));
+          return res.filter(recipe =>
+            recipe.appliance.toLowerCase().trim().includes(tag.value.toLowerCase().trim()) // toLowerCase() et trim() pour éviter les problèmes de casse et d’espaces
+          );
         case "ustensils":
           return res.filter(recipe =>
             recipe.ustensils.some(ust => ust.toLowerCase().includes(tag.value))

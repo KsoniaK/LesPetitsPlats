@@ -16,7 +16,7 @@
     datalistAppareils.innerHTML = '';
     datalistUstensils.innerHTML = '';
 
-    const resteRecetteDiv = document.querySelector('.reste-recette p'); //recettes trouvées
+    const resteRecetteDiv = document.querySelector('.reste-recette_content'); //recettes trouvées
     const aucuneRecetteSection = document.querySelector('.recettes');
     const inputContent = document.querySelector('.recherche_input').value; // Récupère le texte tapé par l’utilisateur (pour l’afficher dans le message)
 
@@ -24,6 +24,7 @@
     if (resteRecetteDiv) {
       if (datas.length === 0) { // Si aucune recette trouvée
         aucuneRecetteSection.textContent = `"Aucune recette ne contient ${inputContent}, vous pouvez chercher: 'tarte aux pommes', 'poisson', etc ... "` // textContent = sécurisé contre les injections HTML
+        resteRecetteDiv.textContent = `${datas.length} recette trouvée `;
       } else {
         resteRecetteDiv.textContent = `${datas.length} recette${datas.length > 1 ? 's' : ''} trouvée${datas.length > 1 ? 's' : ''}`;
       }
@@ -72,9 +73,9 @@
     const appareils = Array.from(new Set(datas.map(r => r.appliance)));
     const ustensils = Array.from(new Set(datas.flatMap(r => r.ustensils)));
 
-    datalistIngredients.innerHTML = ingredients.map(i => `<li class="li-item ing">${i}</li>`).join('');
-    datalistAppareils.innerHTML = appareils.map(a => `<li class="li-item app">${a}</li>`).join('');
-    datalistUstensils.innerHTML = ustensils.map(u => `<li class="li-item ust">${u}</li>`).join('');
+    datalistIngredients.innerHTML = ingredients.map(i => `<li class="li-item ing" data-type="ingredients">${i}</li>`).join('');
+    datalistAppareils.innerHTML = appareils.map(a => `<li class="li-item app" data-type="appliance">${a}</li>`).join('');
+    datalistUstensils.innerHTML = ustensils.map(u => `<li class="li-item ust" data-type="ustensils">${u}</li>`).join('');
   }
 
   // Exposer globalement pour que search.js et tags.js puissent l’utiliser (nécessaire car code dans une IIFE !!)
